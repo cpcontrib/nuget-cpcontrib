@@ -19,19 +19,31 @@
         </p>
         <fieldset style="width:800px">
             <legend><strong>Repository URLs</strong></legend>
-            In the package manager settings, add the following URL to the list of 
-            Package Sources:
+            
+            <div>In the package manager settings, add the following URL to the list of 
+            Package Sources:</div>
+
             <blockquote>
                 <strong><%= Helpers.GetRepositoryUrl(Request.Url, Request.ApplicationPath) %></strong>
             </blockquote>
+            
             <% if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["apiKey"])) { %>
-            To enable pushing packages to this feed using the <a href="https://www.nuget.org/downloads">NuGet command line tool</a> (nuget.exe), set the <code>apiKey</code> appSetting in web.config.
+            <div>To enable pushing packages to this feed using the <a href="https://www.nuget.org/downloads">NuGet command line tool</a> (nuget.exe), set the <code>apiKey</code> appSetting in web.config.</div>
             <% } else { %>
-            Use the command below to push packages to this feed using the <a href="https://www.nuget.org/downloads">NuGet command line tool</a> (nuget.exe).
+            <div>Use the command below to push packages to this feed using the <a href="https://www.nuget.org/downloads">NuGet command line tool</a> (nuget.exe).</div>
             <blockquote>
                 <strong>nuget.exe push {package file} {apikey} -Source <%= Helpers.GetPushUrl(Request.Url, Request.ApplicationPath) %></strong>
             </blockquote>
             <% } %> 
+
+            <div>
+            You can also register this in the Nuget Package Manager VS extension:
+            </div>
+
+            <blockquote>
+                <img src="VS_SourceControl_Options.png" style="height:441px; width:758px" />
+            </blockquote>
+
         </fieldset>
 
         <% if (Request.IsLocal) { %>
